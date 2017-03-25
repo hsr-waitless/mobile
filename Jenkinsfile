@@ -1,5 +1,5 @@
 pipeline {
-  agent { docker 'docker-node-karma' }
+  agent { docker 'node:6.9.5' }
 
   stages {
     stage('install') {
