@@ -1,0 +1,32 @@
+[
+  {
+    "type": "group",
+    "title": "General",
+    "items": [
+      {
+        "title": "Mode",
+        "type": "radio",
+        "key": "mode",
+        "default": "0",
+        "items": [
+          {
+            "value": "0",
+            "title": "None"
+          },
+          {
+            "value": "1",
+            "title": "Guest"
+          },
+          {
+            "value": "2",
+            "title": "Waiter"
+          },
+          {
+            "value": "3",
+            "title": "Chef"
+          }
+        ]
+      }
+    ]
+  }
+]

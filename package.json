@@ -6,6 +6,10 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
+    "deploy-ios": "ng build --prod --base-href . && cordova run ios --device",
+    "deploy-android": "ng build --prod --base-href . && cordova run android --device",
+    "build-ios": "ng build --prod --base-href . && cordova build ios",
+    "build-android": "ng build --prod --base-href . && cordova build android",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
