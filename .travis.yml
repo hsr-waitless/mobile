@@ -19,17 +19,16 @@ before_script:
 - npm run build
 script: npm run test-ci
 deploy:
-  matrix:
-  - provider: releases
-    api_key: $GITHUB_TOKEN
-    file: FILE TO UPLOAD
-    skip_cleanup: true
-    on:
-      tags: true
-      branch: maste
-  - provider: pages
-    skip_cleanup: true
-    local_dir: www
-    github_token: $GITHUB_TOKEN
-    on:
-      branch: master
+- provider: releases
+  api_key: $GITHUB_TOKEN
+  file: FILE TO UPLOAD
+  skip_cleanup: true
+  on:
+    tags: true
+    branch: maste
+- provider: pages
+  skip_cleanup: true
+  local_dir: www
+  github_token: $GITHUB_TOKEN
+  on:
+    branch: master
