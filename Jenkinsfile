@@ -1,5 +1,5 @@
 pipeline {
-  agent { docker 'node:6.2' }
+  agent { docker 'node:6.9.5' }
 
   stages {
     stage('install') {
@@ -16,8 +16,10 @@ pipeline {
     }
 
     stage('test') {
+      agent { docker 'docker-node-karma' }
+
       steps {
-        sh 'npm test'
+        sh 'npm run test-ci'
       }
     }
 
