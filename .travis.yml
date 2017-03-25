@@ -16,16 +16,9 @@ before_install:
 - sh -e /etc/init.d/xvfb start
 before_script:
 - npm install
-- npm run build
+- npm run build-ci
 script: npm run test-ci
 deploy:
-- provider: releases
-  api_key: $GITHUB_TOKEN
-  file: FILE TO UPLOAD
-  skip_cleanup: true
-  on:
-    tags: true
-    branch: maste
 - provider: pages
   skip_cleanup: true
   local_dir: www
