@@ -14,7 +14,7 @@ import { PlatformService } from './providers/platform.service';
 import { ConfigService } from './models/config.service';
 import { NativeConfigService } from './providers/native-config.service';
 import { BrowserConfigService } from './providers/browser-config.service';
-import { SignalrProvider } from './providers/signalr.service';
+import { SignalrService } from './providers/signalr.service';
 import { MenuHubProvider } from './providers/menu-hub-provider';
 import { HUB_TOKEN } from './models/signalr-hub.token';
 import { SignalrWindow } from './models/signalr.window';
@@ -49,7 +49,7 @@ import { PageComponent } from './components/page/page.component';
   ],
   providers: [
     SettingService,
-    SignalrProvider,
+    SignalrService,
     PlatformService,
     MenuHubProvider,
     { provide: SignalrWindow, useFactory: signalrWindowFactory },

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { SettingService } from './providers/setting.service';
 import { TabletMode } from './models/tablet-mode.enum';
 import { Router } from '@angular/router';
-import { SignalrProvider } from './providers/signalr.service';
+import { SignalrService } from './providers/signalr.service';
 import { MenuHubProvider } from './providers/menu-hub-provider';
 
 @Component({
@@ -13,7 +13,7 @@ import { MenuHubProvider } from './providers/menu-hub-provider';
 export class AppComponent implements OnInit {
 
   constructor(private router: Router,
-              private signalr: SignalrProvider,
+              private signalr: SignalrService,
               private settings: SettingService) {
   }
 

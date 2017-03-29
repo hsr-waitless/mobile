@@ -5,6 +5,10 @@
   overflow: hidden;
 }
 
+.navbar {
+  flex-shrink: 0;
+}
+
 .content {
   background: #f5f4f0;
   flex-grow: 1;

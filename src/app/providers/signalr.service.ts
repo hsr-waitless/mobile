@@ -7,7 +7,7 @@ import { SignalrWindow } from '../models/signalr.window';
 import { ConnectionState } from '../models/connection.state.enum';
 
 @Injectable()
-export class SignalrProvider {
+export class SignalrService {
 
   constructor(
     @Inject(SignalrWindow) private window: SignalrWindow,

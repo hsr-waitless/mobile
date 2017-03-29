@@ -18,6 +18,10 @@ export class NativeConfigService extends ConfigService {
       this.preferences.watch();
       document.addEventListener('preferencesChanged', (evt: any) => {
         for (const key in this.keys) {
+          if (!this.keys.hasOwnProperty(key)) {
+            continue;
+          }
+
           this.preferences.fetch(key).then(value => {
             this.keys[ key ].next(value);
           });
