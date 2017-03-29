@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { SubMenuModel } from '../../models/sub.menu.model';
-import { Observable } from 'rxjs';
+import { Observable } from 'rxjs/Observable';
 import { MenuItemModel } from '../../models/menu.item.model';
 import { ItemCategory } from '../../models/item.category.item';
 
@@ -22,28 +22,28 @@ export class SubMenuItemComponent {
         title: 'Grüner Salat',
         description: 'Frische Blattsalate',
         price: 9.50,
-        currency: "CHF",
+        currency: 'CHF',
         category: ItemCategory.Vegan
       },
       {
         title: 'Gemischter Salat',
         description: 'Saisonaler Salatmix',
         price: 13.50,
-        currency: "CHF",
+        currency: 'CHF',
         category: ItemCategory.Vegan
       },
       {
         title: '«Churrasco»–Salat',
         description: 'Blattsalat mit Speck, Cherry–Tomaten, Avocadowürfeln und Brotcroûtons',
         price: 16.00,
-        currency: "CHF",
+        currency: 'CHF',
         category: ItemCategory.Vegan
       },
       {
         title: 'Basilikum–Tomatensalat',
         description: 'Tomaten in Scheiben, angemacht mit gereiftem Aceto Balsamico, Basilikumblättern und Zwiebelringen',
         price: 11.50,
-        currency: "CHF",
+        currency: 'CHF',
         category: ItemCategory.Vegan
       },
     ]);

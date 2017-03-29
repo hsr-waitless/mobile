@@ -1,4 +1,4 @@
-import { ItemCategory } from "./item.category.item";
+import { ItemCategory } from './item.category.item';
 
 export interface MenuItemModel {
   title: string;
