@@ -1,0 +1,4 @@
+<div class="sub-menu-header">{{subMenu.name}}</div>
+<div class="sub-menu-items">
+  <app-menu-item [item]="item" *ngFor="let item of items$ | async"></app-menu-item>
+</div>

@@ -1,0 +1,13 @@
+<app-navigation-bar [title]="title">
+  <app-navigation-item [text]="action.text"
+                       [active]="action === selectedAction"
+                       (clicked)="selectAction(action)"
+                       *ngFor="let action of actions">
+
+  </app-navigation-item>
+</app-navigation-bar>
+
+<div class="content">
+  <ng-content></ng-content>
+</div>
+

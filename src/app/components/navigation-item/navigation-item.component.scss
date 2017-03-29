@@ -1,0 +1,16 @@
+:host {
+  color: white;
+  font-size: 1.3em;
+  font-weight: 100;
+  padding: 20px 30px;
+  cursor: pointer;
+}
+
+span {
+  padding: 0px 4px;
+}
+
+.active {
+  background: white;
+  color: #4aa05a;
+}

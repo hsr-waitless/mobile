@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { SettingService } from './providers/setting.service';
 import { TabletMode } from './models/tablet-mode.enum';
 import { Router } from '@angular/router';
+import { SignalrProvider } from './providers/signalr.service';
+import { MenuHubProvider } from './providers/menu-hub-provider';
 
 @Component({
   selector: 'app-root',
@@ -11,10 +13,13 @@ import { Router } from '@angular/router';
 export class AppComponent implements OnInit {
 
   constructor(private router: Router,
+              private signalr: SignalrProvider,
               private settings: SettingService) {
   }
 
   ngOnInit() {
+    this.signalr.start();
+
     this.settings.mode$.subscribe(mode => {
       if (mode === TabletMode.Guest) {
         this.router.navigate(['guest']);

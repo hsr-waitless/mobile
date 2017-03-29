@@ -1,0 +1,15 @@
+:host {
+  display: flex;
+  justify-content: center;
+  height: 100vh;
+  align-items: center;
+}
+
+.selectable {
+  padding: 10px 30px;
+  font-size: 2em;
+  margin: 10px;
+  border-radius: 5px;
+  background: #4aa05a;
+  color: white;
+}

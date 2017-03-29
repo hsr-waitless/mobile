@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { WaiterComponent } from './components/waiter/waiter.component';
-import { GuestComponent } from './components/guest/guest.component';
-import { ChefComponent } from './components/chef/chef.component';
-import { ModeSelectorComponent } from './components/mode-selector/mode-selector.component';
+import { WaiterComponent } from './pages/waiter/waiter.component';
+import { GuestComponent } from './pages/guest/guest.component';
+import { ChefComponent } from './pages/chef/chef.component';
+import { ModeSelectorComponent } from './pages/mode-selector/mode-selector.component';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 
 const routes: Routes = [
