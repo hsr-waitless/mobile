@@ -1,6 +1,8 @@
-# WaitlessWeb
+# waitless-mobile
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.0.0.
+[![Build Status](https://travis-ci.org/hsr-waitless/mobile.svg?branch=master)](https://travis-ci.org/hsr-waitless/mobile)
+
+[Live demo](https://hsr-waitless.github.io/mobile/)
 
 ## Development server
 
