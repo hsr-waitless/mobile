@@ -25,6 +25,9 @@ import { NavigationItemComponent } from './components/navigation-item/navigation
 import { SubMenuItemComponent } from './components/sub-menu-item/sub-menu-item.component';
 import { PricePipe } from './pipes/price-pipe';
 import { PageComponent } from './components/page/page.component';
+import { StartupGuard } from './guards/startup.guard';
+import { SidePanelComponent } from './components/side-panel/side-panel.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -39,21 +42,24 @@ import { PageComponent } from './components/page/page.component';
     SubMenuItemComponent,
     ModeSelectorComponent,
     PricePipe,
-    PageComponent
+    PageComponent,
+    SidePanelComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
-    AppRoutingModule
+    AppRoutingModule,
+    BrowserAnimationsModule
   ],
   providers: [
     SettingService,
     SignalrService,
     PlatformService,
     MenuHubProvider,
+    StartupGuard,
     { provide: SignalrWindow, useFactory: signalrWindowFactory },
-    { provide: HUB_TOKEN, useClass: MenuHubProvider, multi: true },
+    { provide: HUB_TOKEN, useFactory: menuHubFactory, deps: [MenuHubProvider], multi: true },
     {
       provide: ConfigService,
       useFactory: configFactory,
@@ -66,6 +72,10 @@ export class AppModule { }
 
 export function signalrWindowFactory(): any {
   return window;
+}
+
+export function menuHubFactory(menuHub: MenuHubProvider) {
+  return menuHub;
 }
 
 export function configFactory(platform: PlatformService) {

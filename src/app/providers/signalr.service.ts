@@ -8,11 +8,17 @@ import { ConnectionState } from '../models/connection.state.enum';
 
 @Injectable()
 export class SignalrService {
+  private startResolve: Function;
+
+  public started: Promise<void>;
 
   constructor(
     @Inject(SignalrWindow) private window: SignalrWindow,
     @Inject(HUB_TOKEN) public hubs: SignalrHub[]) {
 
+    this.started = new Promise<void>(resolve => {
+      this.startResolve = resolve;
+    });
   }
 
   start() {
@@ -37,6 +43,8 @@ export class SignalrService {
       for (const hub of this.hubs) {
         hub.connected();
       }
+
+      this.startResolve();
     });
   }
 }

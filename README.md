@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/hsr-waitless/mobile.svg?branch=master)](https://travis-ci.org/hsr-waitless/mobile)
 
-[Live demo](https://hsr-waitless.github.io/mobile/)
+[Live demo](http://waitless.remarkies.codes)
 
 ## Development server
 

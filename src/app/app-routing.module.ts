@@ -5,6 +5,7 @@ import { GuestComponent } from './pages/guest/guest.component';
 import { ChefComponent } from './pages/chef/chef.component';
 import { ModeSelectorComponent } from './pages/mode-selector/mode-selector.component';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
+import { StartupGuard } from './guards/startup.guard';
 
 const routes: Routes = [
   {
@@ -13,19 +14,24 @@ const routes: Routes = [
   },
   {
     path: 'waiter',
-    component: WaiterComponent
-  },
-  {
-    path: 'waiter',
-    component: WaiterComponent
+    component: WaiterComponent,
+    canActivate: [
+      StartupGuard
+    ]
   },
   {
     path: 'guest',
-    component: GuestComponent
+    component: GuestComponent,
+    canActivate: [
+      StartupGuard
+    ]
   },
   {
     path: 'chef',
-    component: ChefComponent
+    component: ChefComponent,
+    canActivate: [
+      StartupGuard
+    ]
   }
 ];
 

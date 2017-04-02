@@ -21,9 +21,14 @@ export class PageComponent implements OnInit {
   }
 
   ngOnInit() {
+    console.log(this.actions);
     if (this.actions && this.actions.length > 0) {
       this.selectedAction.emit(this.actions[ 0 ]);
     }
+  }
+
+  ngOnChange() {
+    console.log('change', this.actions);
   }
 
   public selectAction(action: PageAction) {

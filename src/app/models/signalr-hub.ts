@@ -1,15 +1,16 @@
 import { Subject } from 'rxjs/Subject';
 import { Observable } from 'rxjs/Observable';
 import { RpcExecutor } from './rpc.executor';
-import { RpcCallResponseModel } from './rpc-call-response.model';
+import { CommandModel } from './command.model';
+import { NgZone } from '@angular/core';
 
 export abstract class SignalrHub {
   private proxy: any;
   private ready: Promise<void>;
   private resolve: Function;
-  private events: {[key: string]: any} = {};
+  private events: { [key: string]: any } = {};
 
-  constructor(public name: string) {
+  constructor(public name: string, private zone: NgZone) {
     this.ready = new Promise<void>((resolve) => {
       this.resolve = resolve;
     });
@@ -22,19 +23,26 @@ export abstract class SignalrHub {
   }
 
   abstract init(): void;
+
   abstract connected(): void;
 
   on<TResult>(key: string): Observable<TResult> {
-    this.events[key] = new Subject<TResult>();
-    this.proxy.on(key, result => {
-      this.events[key].next(result);
-    });
-    return this.events[key].asObservable();
+    if (!(key in this.events)) {
+      this.events[ key ] = new Subject<TResult>();
+      this.proxy.on(key, result => {
+        this.zone.run(() => {
+          console.log('receive', key, result);
+          this.events[ key ].next(result);
+        });
+      });
+    }
+
+    return this.events[ key ].asObservable();
   }
 
   emit(key: string, ...args: any[]): Promise<any> {
     return this.ready.then(() => {
-      console.log('emit', key, args);
+      console.log('emit', key);
       return this.proxy.invoke(key, ...args).fail(err => {
         console.error(err);
       });
@@ -43,8 +51,8 @@ export abstract class SignalrHub {
 
   rpc<TResult>(key: string): RpcExecutor<TResult> {
     return new RpcExecutor<TResult>(
-      this.on<RpcCallResponseModel<TResult>>(`${key}Response`),
-      (args) => this.emit(`${key}Request`, ...args)
+      this.on<CommandModel<TResult>>(`${key}Response`),
+      (args) => this.emit(`${key}Request`, args)
     );
   }
 }

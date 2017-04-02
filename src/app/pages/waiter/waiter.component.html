@@ -1,3 +1,47 @@
-<p>
-  waiter works!
-</p>
+<app-page [actions]="actions">
+  <div class="header">
+    <button class="button button-circle" (click)="add()">
+      <i class="fa fa-2x fa-plus"></i>
+    </button>
+  </div>
+
+  <app-side-panel #panel [title]="'Create order'">
+    <table>
+      <thead>
+      <tr>
+        <th>Table</th>
+        <th></th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td>Table 1</td>
+        <td class="select-button"><button class="button button-small">Select</button></td>
+      </tr>
+      <tr>
+        <td>Table 2</td>
+        <td class="select-button"><button class="button button-small">Select</button></td>
+      </tr>
+      <tr>
+        <td>Table 3</td>
+        <td class="select-button"><button class="button button-small">Select</button></td>
+      </tr>
+      <tr>
+        <td>Table 4</td>
+        <td class="select-button"><button class="button button-small">Select</button></td>
+      </tr>
+      </tbody>
+    </table>
+  </app-side-panel>
+
+  <div class="orders">
+    <app-list-item class="order" *ngFor="let order of orders">
+      <div class="order-number">#{{order.number}}</div>
+      <div class="order-table">{{order.table}}</div>
+      <div class="order-action">
+        <button>Open</button>
+      </div>
+
+    </app-list-item>
+  </div>
+</app-page>
