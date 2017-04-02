@@ -11,7 +11,7 @@ import { SubMenuResponseModel } from '../models/submenu.response.model';
 import { MenuItemResponseModel } from '../models/menu.item.response.model';
 
 @Injectable()
-export class MenuHubProvider extends SignalrHub {
+export class MenuHubService extends SignalrHub {
 
   private getMenuRpc: RpcExecutor<MenuResponseModel>;
   private getSubMenuRpc: RpcExecutor<SubMenuResponseModel>;

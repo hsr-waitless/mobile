@@ -15,7 +15,7 @@ import { ConfigService } from './models/config.service';
 import { NativeConfigService } from './providers/native-config.service';
 import { BrowserConfigService } from './providers/browser-config.service';
 import { SignalrService } from './providers/signalr.service';
-import { MenuHubProvider } from './providers/menu-hub-provider';
+import { MenuHubService } from './providers/menu-hub.service';
 import { HUB_TOKEN } from './models/signalr-hub.token';
 import { SignalrWindow } from './models/signalr.window';
 import { ListItemComponent } from './components/list-item/list-item.component';
@@ -56,10 +56,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     SettingService,
     SignalrService,
     PlatformService,
-    MenuHubProvider,
+    MenuHubService,
     StartupGuard,
     { provide: SignalrWindow, useFactory: signalrWindowFactory },
-    { provide: HUB_TOKEN, useFactory: menuHubFactory, deps: [MenuHubProvider], multi: true },
+    { provide: HUB_TOKEN, useFactory: menuHubFactory, deps: [MenuHubService], multi: true },
     {
       provide: ConfigService,
       useFactory: configFactory,
@@ -74,7 +74,7 @@ export function signalrWindowFactory(): any {
   return window;
 }
 
-export function menuHubFactory(menuHub: MenuHubProvider) {
+export function menuHubFactory(menuHub: MenuHubService) {
   return menuHub;
 }
 

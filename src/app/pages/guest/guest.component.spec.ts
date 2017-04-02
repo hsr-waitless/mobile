@@ -7,7 +7,8 @@ import { MenuItemComponent } from '../../components/menu-item/menu-item.componen
 import { PricePipe } from '../../pipes/price-pipe';
 import { NavigationItemComponent } from '../../components/navigation-item/navigation-item.component';
 import { NavigationBarComponent } from '../../components/navigation-bar/navigation-bar.component';
-import { MenuHubProvider } from '../../providers/menu-hub-provider';
+import { MenuHubService } from '../../providers/menu-hub.service';
+import { MenuHubServiceMock } from '../../providers/menu-hub.service.mock';
 
 describe('GuestComponent', () => {
   let component: GuestComponent;
@@ -25,7 +26,7 @@ describe('GuestComponent', () => {
         PricePipe
       ],
       providers: [
-        MenuHubProvider
+        { provide: MenuHubService, useClass: MenuHubServiceMock }
       ]
     })
       .compileComponents();

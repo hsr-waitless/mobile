@@ -1,5 +1,5 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
-import { MenuHubProvider } from '../../providers/menu-hub-provider';
+import { MenuHubService } from '../../providers/menu-hub.service';
 import { MenuModel } from '../../models/menu.model';
 import { SubMenuModel } from '../../models/sub.menu.model';
 import { Observable } from 'rxjs/Observable';
@@ -18,7 +18,7 @@ export class GuestComponent implements OnInit {
   public menus$: Observable<MenuModel[]>;
   public subMenus$: Observable<SubMenuModel[]>;
 
-  constructor(private menu: MenuHubProvider) {
+  constructor(private menu: MenuHubService) {
   }
 
   ngOnInit() {

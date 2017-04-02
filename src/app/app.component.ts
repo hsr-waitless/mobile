@@ -3,7 +3,7 @@ import { SettingService } from './providers/setting.service';
 import { TabletMode } from './models/tablet-mode.enum';
 import { Router } from '@angular/router';
 import { SignalrService } from './providers/signalr.service';
-import { MenuHubProvider } from './providers/menu-hub-provider';
+import { MenuHubService } from './providers/menu-hub.service';
 
 @Component({
   selector: 'app-root',

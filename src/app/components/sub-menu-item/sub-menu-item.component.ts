@@ -2,7 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { SubMenuModel } from '../../models/sub.menu.model';
 import { Observable } from 'rxjs/Observable';
 import { MenuItemModel } from '../../models/menu.item.model';
-import { MenuHubProvider } from '../../providers/menu-hub-provider';
+import { MenuHubService } from '../../providers/menu-hub.service';
 
 @Component({
   selector: 'app-sub-menu-item',
@@ -16,7 +16,7 @@ export class SubMenuItemComponent implements OnInit {
 
   public items$: Observable<MenuItemModel[]>;
 
-  constructor(private menuHub: MenuHubProvider) {
+  constructor(private menuHub: MenuHubService) {
   }
 
   ngOnInit() {
