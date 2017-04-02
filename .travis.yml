@@ -27,4 +27,3 @@ deploy:
     branch: master
 notifications:
   slack: hsrdreamteam:9DzildoGSdJuGSnprgoGIq8U
-    on_success: always
