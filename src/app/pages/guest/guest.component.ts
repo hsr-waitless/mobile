@@ -25,12 +25,15 @@ export class GuestComponent implements OnInit {
     this.menus$ = this.menu.getMenus();
     this.subMenus$ = Observable.of([]);
     this.menus$.subscribe(menus => {
-      this.actions = menus.map(menu => ({ text: menu.name, args: menu }));
-      console.log(this.actions);
+      this.actions = menus
+        .sort((a, b) => a.order - b.order)
+        .map(menu => ({ text: menu.name, args: menu }));
     });
   }
 
   selectAction(action: PageAction) {
-    this.subMenus$ = this.menu.getSubMenus(action.args.id);
+    this.subMenus$ = this.menu.getSubMenus(action.args.id).map(menus => {
+      return menus.sort((a, b) => a.order - b.order);
+    });
   }
 }

@@ -20,6 +20,9 @@ export class SubMenuItemComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.items$ = this.menuHub.getMenuItems(this.subMenu.id);
+    this.items$ = this.menuHub.getMenuItems(this.subMenu.id)
+      .map(items => {
+        return items.sort((a, b) => a.order - b.order);
+      });
   }
 }

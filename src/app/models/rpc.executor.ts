@@ -8,9 +8,15 @@ export class RpcExecutor<TResult> {
               private exec: (args: any) => any) {
   }
 
+  private generateId() {
+    return Math.floor((1 + Math.random()) * 0x10000)
+      .toString(16)
+      .substring(1);
+  }
+
   run(args: any): Observable<TResult> {
     const req: CommandModel<any> = {
-      requestId: 'abc',
+      requestId: this.generateId(),
       arguments: args
     };
 
