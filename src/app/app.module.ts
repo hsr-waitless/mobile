@@ -30,6 +30,9 @@ import { SidePanelComponent } from './components/side-panel/side-panel.component
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NotificationComponent } from './components/notification/notification.component';
 import { NotificationService } from './providers/notification.service';
+import { DetailComponent } from './pages/waiter/detail/detail.component';
+import { OrdersComponent } from './pages/waiter/orders/orders.component';
+import { CallsComponent } from './pages/waiter/calls/calls.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +49,10 @@ import { NotificationService } from './providers/notification.service';
     PricePipe,
     PageComponent,
     SidePanelComponent,
-    NotificationComponent
+    NotificationComponent,
+    DetailComponent,
+    OrdersComponent,
+    CallsComponent
   ],
   imports: [
     BrowserModule,

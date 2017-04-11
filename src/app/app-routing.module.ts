@@ -6,6 +6,10 @@ import { ChefComponent } from './pages/chef/chef.component';
 import { ModeSelectorComponent } from './pages/mode-selector/mode-selector.component';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { StartupGuard } from './guards/startup.guard';
+import { OverviewComponent } from './pages/waiter/overview/overview.component';
+import { OrdersComponent } from './pages/waiter/orders/orders.component';
+import { CallsComponent } from './pages/waiter/calls/calls.component';
+import { DetailComponent } from './pages/waiter/detail/detail.component';
 
 const routes: Routes = [
   {
@@ -15,6 +19,25 @@ const routes: Routes = [
   {
     path: 'waiter',
     component: WaiterComponent,
+    children: [
+      {
+        path: 'orders',
+        component: OrdersComponent,
+      },
+      {
+        path: 'calls',
+        component: CallsComponent,
+      },
+      {
+        path: 'detail/:id',
+        component: DetailComponent
+      },
+      {
+        path: '',
+        redirectTo: 'orders',
+        pathMatch: 'full'
+      }
+    ],
     canActivate: [
       StartupGuard
     ]

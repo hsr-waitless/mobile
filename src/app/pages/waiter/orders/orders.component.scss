@@ -1,0 +1,55 @@
+.header {
+  padding: 20px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+:host /deep/ .title {
+  font-size: 1.4em;
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+}
+
+:host /deep/ .select-button {
+  text-align: right;
+
+  .button {
+    margin-bottom: 0;
+  }
+}
+
+.orders {
+  flex-grow: 1;
+
+  padding: 20px;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.order {
+  display: flex;
+  align-items: center;
+
+
+  .order-number {
+    width: 60px;
+    flex-shrink: 0;
+  }
+
+  .order-table {
+    flex-grow: 1;
+  }
+
+  .order-action {
+    flex-shrink: 0;
+
+    button {
+      background: #4aa05a;
+      color: white;
+      border: 0px;
+      margin-bottom: 0;
+    }
+  }
+}

@@ -27,7 +27,7 @@ export class SignalrService {
     const connection = this.window.$.hubConnection();
     connection.url = `${environment.backendUrl}/signalr`;
 
-    console.log('connect to', connection.url);
+    console.log('websocket', 'connect to', connection.url);
 
     connection.error(err => {
       this.zone.run(() => {
@@ -38,7 +38,7 @@ export class SignalrService {
 
     connection.stateChanged((change) => {
       this.zone.run(() => {
-        console.log(change.newState, ConnectionState[ change.newState ]);
+        console.log('websocket', ConnectionState[ change.newState ]);
         if (change.newState === ConnectionState.Connected) {
           this.notification.clear();
         }
