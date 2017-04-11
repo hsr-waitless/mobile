@@ -1,0 +1,7 @@
+<div class="toast"
+     *ngIf="toasts$ | async"
+     (click)="clear()"
+     [style.backgroundColor]="(toasts$ | async)?.backgroundColor"
+     [style.color]="(toasts$ | async)?.foregroundColor">
+  {{(toasts$ | async)?.text}}
+</div>
