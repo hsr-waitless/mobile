@@ -13,11 +13,10 @@ export class SignalrService {
 
   public started: Promise<void>;
 
-  constructor(
-    private notification: NotificationService,
-    private zone: NgZone,
-    @Inject(SignalrWindow) private window: SignalrWindow,
-    @Inject(HUB_TOKEN) public hubs: SignalrHub[]) {
+  constructor(private notification: NotificationService,
+              private zone: NgZone,
+              @Inject(SignalrWindow) private window: SignalrWindow,
+              @Inject(HUB_TOKEN) public hubs: SignalrHub[]) {
 
     this.started = new Promise<void>(resolve => {
       this.startResolve = resolve;
@@ -38,7 +37,12 @@ export class SignalrService {
     });
 
     connection.stateChanged((change) => {
-      console.log(change.newState, ConnectionState[change.newState]);
+      this.zone.run(() => {
+        console.log(change.newState, ConnectionState[ change.newState ]);
+        if (change.newState === ConnectionState.Connected) {
+          this.notification.clear();
+        }
+      });
     });
 
     for (const hub of this.hubs) {
