@@ -1,10 +1,11 @@
-import { Inject, Injectable } from '@angular/core';
+import { Inject, Injectable, NgZone } from '@angular/core';
 import 'rxjs/add/operator/map';
 import { HUB_TOKEN } from '../models/signalr-hub.token';
 import { SignalrHub } from '../models/signalr-hub';
 import { environment } from '../../environments/environment';
 import { SignalrWindow } from '../models/signalr.window';
 import { ConnectionState } from '../models/connection.state.enum';
+import { NotificationService } from './notification.service';
 
 @Injectable()
 export class SignalrService {
@@ -13,6 +14,8 @@ export class SignalrService {
   public started: Promise<void>;
 
   constructor(
+    private notification: NotificationService,
+    private zone: NgZone,
     @Inject(SignalrWindow) private window: SignalrWindow,
     @Inject(HUB_TOKEN) public hubs: SignalrHub[]) {
 
@@ -28,7 +31,10 @@ export class SignalrService {
     console.log('connect to', connection.url);
 
     connection.error(err => {
-      console.error(err);
+      this.zone.run(() => {
+        console.error(err);
+        this.notification.showError('server is unavailable');
+      });
     });
 
     connection.stateChanged((change) => {

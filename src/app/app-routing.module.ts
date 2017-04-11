@@ -32,6 +32,11 @@ const routes: Routes = [
     canActivate: [
       StartupGuard
     ]
+  },
+  {
+    path: '',
+    redirectTo: '/mode',
+    pathMatch: 'full'
   }
 ];
 

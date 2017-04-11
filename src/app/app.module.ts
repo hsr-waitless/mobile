@@ -28,6 +28,8 @@ import { PageComponent } from './components/page/page.component';
 import { StartupGuard } from './guards/startup.guard';
 import { SidePanelComponent } from './components/side-panel/side-panel.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NotificationComponent } from './components/notification/notification.component';
+import { NotificationService } from './providers/notification.service';
 
 @NgModule({
   declarations: [
@@ -43,7 +45,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     ModeSelectorComponent,
     PricePipe,
     PageComponent,
-    SidePanelComponent
+    SidePanelComponent,
+    NotificationComponent
   ],
   imports: [
     BrowserModule,
@@ -57,6 +60,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     SignalrService,
     PlatformService,
     MenuHubService,
+    NotificationService,
     StartupGuard,
     { provide: SignalrWindow, useFactory: signalrWindowFactory },
     { provide: HUB_TOKEN, useFactory: menuHubFactory, deps: [MenuHubService], multi: true },
@@ -79,7 +83,7 @@ export function menuHubFactory(menuHub: MenuHubService) {
 }
 
 export function configFactory(platform: PlatformService) {
-  if (platform.isCordova) {
+  if (platform.isCordova && (<any>window).plugins && (<any>window).plugins.appPreferences) {
     return new NativeConfigService(platform);
   } else {
     return new BrowserConfigService();
