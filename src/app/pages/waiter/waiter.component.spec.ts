@@ -8,6 +8,8 @@ import { NavigationItemComponent } from '../../components/navigation-item/naviga
 import { NavigationBarComponent } from '../../components/navigation-bar/navigation-bar.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TableComponent } from '../../components/table/table.component';
+import { OrderHubService } from '../../providers/order-hub.service';
+import { OrderHubServiceMock } from '../../providers/order-hub.service.mock';
 
 describe('WaiterComponent', () => {
   let component: WaiterComponent;
@@ -26,6 +28,10 @@ describe('WaiterComponent', () => {
         NavigationItemComponent,
         NavigationBarComponent,
         TableComponent
+      ],
+
+      providers: [
+        { provide: OrderHubService, useClass: OrderHubServiceMock }
       ]
     })
     .compileComponents();
