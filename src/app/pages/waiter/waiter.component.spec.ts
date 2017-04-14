@@ -7,6 +7,7 @@ import { ListItemComponent } from '../../components/list-item/list-item.componen
 import { NavigationItemComponent } from '../../components/navigation-item/navigation-item.component';
 import { NavigationBarComponent } from '../../components/navigation-bar/navigation-bar.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { TableComponent } from '../../components/table/table.component';
 
 describe('WaiterComponent', () => {
   let component: WaiterComponent;
@@ -23,7 +24,8 @@ describe('WaiterComponent', () => {
         ListItemComponent,
         SidePanelComponent,
         NavigationItemComponent,
-        NavigationBarComponent
+        NavigationBarComponent,
+        TableComponent
       ]
     })
     .compileComponents();
