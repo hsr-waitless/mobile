@@ -6,32 +6,7 @@
   </div>
 
   <app-side-panel #panel [title]="'Create order'">
-    <table>
-      <thead>
-      <tr>
-        <th>Table</th>
-        <th></th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr>
-        <td>Table 1</td>
-        <td class="select-button"><button class="button button-small">Select</button></td>
-      </tr>
-      <tr>
-        <td>Table 2</td>
-        <td class="select-button"><button class="button button-small">Select</button></td>
-      </tr>
-      <tr>
-        <td>Table 3</td>
-        <td class="select-button"><button class="button button-small">Select</button></td>
-      </tr>
-      <tr>
-        <td>Table 4</td>
-        <td class="select-button"><button class="button button-small">Select</button></td>
-      </tr>
-      </tbody>
-    </table>
+        <app-table [table]="table" *ngFor="let table of tables$ | async"></app-table>
   </app-side-panel>
 
   <div class="orders">
