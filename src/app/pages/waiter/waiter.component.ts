@@ -1,3 +1,10 @@
+import {Component, OnInit, ViewChild} from '@angular/core';
+import {PageAction} from '../../models/page.action';
+import {SidePanelComponent} from '../../components/side-panel/side-panel.component';
+import {OrderModel} from '../../models/order.model';
+import {OrderHubService} from '../../providers/order-hub.service';
+import {Observable} from 'rxjs';
+import {TableModel} from '../../models/table.model';
 import { Component, OnInit } from '@angular/core';
 import { PageAction } from '../../models/page.action';
 import { Router } from '@angular/router';
@@ -11,13 +18,29 @@ export class WaiterComponent implements OnInit {
 
   public actions: PageAction[];
 
-  constructor(private router: Router) { }
+  @ViewChild('panel')
+  public panel: SidePanelComponent;
+
+  public orders: OrderModel[];
+  public tables$: Observable<TableModel[]>;
+
+  constructor(private orderHub: OrderHubService) {
+  }
 
   ngOnInit() {
     this.actions = [
+      {text: 'Bestellungen'},
+      {text: 'Aufrufe'}
+    ];
+
+    this.orders = [
+      {number: 1234, table: 'Table 3', date: new Date(), positions: []},
+      {number: 1234, table: 'Table 3', date: new Date(), positions: []}
       { text: 'Bestellungen', args: 'orders' },
       { text: 'Aufrufe', args: 'calls' }
     ];
+
+    this.tables$ = this.orderHub.getTables();
   }
 
   selected(page: PageAction) {
