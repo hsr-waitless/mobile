@@ -8,6 +8,7 @@ import { ConfigService } from './models/config.service';
 import { RouterTestingModule } from '@angular/router/testing';
 import { SignalrService } from './providers/signalr.service';
 import { SignalrServiceMock } from './providers/signalr.service.mock';
+import { AppModule } from './app.module';
 
 describe('AppComponent', () => {
   let component: AppComponent;
@@ -15,9 +16,8 @@ describe('AppComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AppComponent ],
       imports: [
-        RouterTestingModule.withRoutes([])
+        AppModule
       ],
       providers: [
         SettingService,

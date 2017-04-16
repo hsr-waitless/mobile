@@ -2,6 +2,9 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { SidePanelComponent } from '../../../components/side-panel/side-panel.component';
 import { OrderModel } from '../../../models/order.model';
+import { OrderHubService } from '../../../providers/order-hub.service';
+import { TableModel } from '../../../models/table.model';
+import { Observable } from 'rxjs/Observable';
 
 @Component({
   selector: 'app-orders',
@@ -14,8 +17,10 @@ export class OrdersComponent implements OnInit {
   public panel: SidePanelComponent;
 
   public orders: OrderModel[];
+  public tables$: Observable<TableModel[]>;
 
-  constructor(private router: Router) { }
+  constructor(private router: Router,
+              private orderHub: OrderHubService) { }
 
   ngOnInit() {
     this.orders = [
@@ -26,8 +31,8 @@ export class OrdersComponent implements OnInit {
 
 
   add() {
-    console.log('add');
     this.panel.show();
+    this.tables$ = this.orderHub.getTables();
   }
 
   open(order: OrderModel) {

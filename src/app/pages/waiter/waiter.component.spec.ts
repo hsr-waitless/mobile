@@ -10,6 +10,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TableComponent } from '../../components/table/table.component';
 import { OrderHubService } from '../../providers/order-hub.service';
 import { OrderHubServiceMock } from '../../providers/order-hub.service.mock';
+import { AppModule } from '../../app.module';
 
 describe('WaiterComponent', () => {
   let component: WaiterComponent;
@@ -18,18 +19,8 @@ describe('WaiterComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
-        BrowserAnimationsModule
+        AppModule
       ],
-      declarations: [
-        WaiterComponent,
-        PageComponent,
-        ListItemComponent,
-        SidePanelComponent,
-        NavigationItemComponent,
-        NavigationBarComponent,
-        TableComponent
-      ],
-
       providers: [
         { provide: OrderHubService, useClass: OrderHubServiceMock }
       ]

@@ -35,6 +35,7 @@ import { NotificationService } from './providers/notification.service';
 import { DetailComponent } from './pages/waiter/detail/detail.component';
 import { OrdersComponent } from './pages/waiter/orders/orders.component';
 import { CallsComponent } from './pages/waiter/calls/calls.component';
+import { TabletHubService } from './providers/tablet-hub.service';
 
 @NgModule({
   declarations: [
@@ -71,9 +72,11 @@ import { CallsComponent } from './pages/waiter/calls/calls.component';
     MenuHubService,
     NotificationService,
     OrderHubService,
+    TabletHubService,
     StartupGuard,
     { provide: SignalrWindow, useFactory: signalrWindowFactory },
     { provide: HUB_TOKEN, useFactory: menuHubFactory, deps: [MenuHubService], multi: true },
+    { provide: HUB_TOKEN, useFactory: tabletHubFactory, deps: [TabletHubService], multi: true },
     { provide: HUB_TOKEN, useFactory: orderHubFactory, deps: [OrderHubService], multi: true },
     {
       provide: ConfigService,
@@ -92,6 +95,11 @@ export function signalrWindowFactory(): any {
 export function menuHubFactory(menuHub: MenuHubService) {
   return menuHub;
 }
+
+export function tabletHubFactory(tabletHub: TabletHubService) {
+  return tabletHub;
+}
+
 
 export function orderHubFactory(orderHub: OrderHubService) {
   return orderHub;

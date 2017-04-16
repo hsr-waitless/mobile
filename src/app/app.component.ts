@@ -21,6 +21,7 @@ export class AppComponent implements OnInit {
     this.signalr.start();
 
     this.settings.mode$.subscribe(mode => {
+      console.log('mode', TabletMode[mode]);
       if (mode === TabletMode.Guest) {
         this.router.navigate(['guest']);
       } else if (mode === TabletMode.Waiter) {
