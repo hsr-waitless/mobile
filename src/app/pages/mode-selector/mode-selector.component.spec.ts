@@ -4,6 +4,7 @@ import { ModeSelectorComponent } from './mode-selector.component';
 import { SettingService } from '../../providers/setting.service';
 import { ConfigService } from '../../models/config.service';
 import { BrowserConfigService } from '../../providers/browser-config.service';
+import { AppModule } from '../../app.module';
 
 describe('ModeSelectorComponent', () => {
   let component: ModeSelectorComponent;
@@ -11,7 +12,7 @@ describe('ModeSelectorComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ModeSelectorComponent ],
+      imports: [ AppModule ],
       providers: [
         SettingService,
         { provide: ConfigService, useClass: BrowserConfigService },
