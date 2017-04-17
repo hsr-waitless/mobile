@@ -16,14 +16,14 @@ export class OrderHubService extends SignalrHub {
   }
 
   init(): void {
-    this.getTableRpc = this.rpc('GetTable');
+    this.getTableRpc = this.rpc('GetAllTables');
   }
 
   connected(): void {
 
   }
 
-  public getTables(): Observable<TableModel[]> {
+  public getAllTables(): Observable<TableModel[]> {
     return this.getTableRpc
       .run({})
       .map(res => {

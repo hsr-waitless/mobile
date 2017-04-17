@@ -32,7 +32,7 @@ export class OrdersComponent implements OnInit {
 
   add() {
     this.panel.show();
-    this.tables$ = this.orderHub.getTables();
+    this.tables$ = this.orderHub.getAllTables();
   }
 
   open(order: OrderModel) {
