@@ -9,6 +9,7 @@ import { StartupGuard } from './guards/startup.guard';
 import { OrdersComponent } from './pages/waiter/orders/orders.component';
 import { CallsComponent } from './pages/waiter/calls/calls.component';
 import { DetailComponent } from './pages/waiter/detail/detail.component';
+import { ConfigGuard } from './guards/config.guard';
 
 const routes: Routes = [
   {
@@ -38,7 +39,8 @@ const routes: Routes = [
       }
     ],
     canActivate: [
-      StartupGuard
+      StartupGuard,
+      ConfigGuard
     ]
   },
   {

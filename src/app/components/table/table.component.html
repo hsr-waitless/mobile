@@ -1,4 +1,8 @@
 <div class="table">
-  <div class="table-name">{{table.name}}</div>
-  <div class="table-action"><button class="button button-small">Select</button></div>
+  <div class="table-name">{{table.name}} <span *ngIf="!table.available">(busy)</span></div>
+  <div class="table-action">
+    <button class="button button-small"
+            [disabled]="!table.available"
+            (click)="select.emit(table)">Select</button>
+  </div>
 </div>

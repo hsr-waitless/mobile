@@ -1,3 +1,22 @@
-<p>
-  detail works!
-</p>
+<div class="header">
+  <div>
+    <span class="title">Order #{{(order$ | async)?.number}}</span>
+    <span>{{(order$ | async)?.table}}</span>
+  </div>
+  <button class="button button-circle" (click)="add()">
+    <i class="fa fa-2x fa-plus"></i>
+  </button>
+</div>
+
+<app-side-panel #panel [title]="'Assign tablet'">
+  <app-tablet-item [tablet]="tablet" *ngFor="let tablet of tablets$ | async"></app-tablet-item>
+</app-side-panel>
+
+<div class="positions">
+  <div class="position" *ngFor="let position of (order$ | async)?.positions">
+
+  </div>
+  <div class="position" *ngIf="(order$ | async)?.positions?.length === 0">
+    No positions
+  </div>
+</div>

@@ -19,12 +19,13 @@ export abstract class SignalrHub {
   setup(proxy: any): void {
     this.proxy = proxy;
     this.init();
+  }
+
+  start() {
     this.resolve();
   }
 
   abstract init(): void;
-
-  abstract connected(): void;
 
   on<TResult>(key: string): Observable<TResult> {
     if (!(key in this.events)) {

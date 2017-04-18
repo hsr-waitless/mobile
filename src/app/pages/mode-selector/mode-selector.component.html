@@ -1,3 +1,10 @@
-<div (click)="setGuestMode()" class="selectable">Guest</div>
-<div (click)="setWaiterMode()" class="selectable">Waiter</div>
-<div (click)="setChefMode()" class="selectable">Chef</div>
+<div class="input-group">
+  <span>Tablet Identifier</span>
+  <input type="text" [(ngModel)]="tabletIdentifier">
+</div>
+
+<div class="modes">
+  <div (click)="setGuestMode()" class="selectable">Guest</div>
+  <div (click)="setWaiterMode()" class="selectable">Waiter</div>
+  <div (click)="setChefMode()" class="selectable">Chef</div>
+</div>

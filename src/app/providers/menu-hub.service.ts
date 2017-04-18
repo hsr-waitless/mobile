@@ -27,10 +27,6 @@ export class MenuHubService extends SignalrHub {
     this.getItemTypeRpc = this.rpc('GetItemType');
   }
 
-  connected(): void {
-
-  }
-
   public getMenus(): Observable<MenuModel[]> {
     return this.getMenuRpc
       .run({})

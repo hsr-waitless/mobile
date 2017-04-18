@@ -51,7 +51,7 @@ export class SignalrService {
 
     return connection.start().done(() => {
       for (const hub of this.hubs) {
-        hub.connected();
+        hub.start();
       }
 
       this.startResolve();

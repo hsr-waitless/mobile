@@ -4,6 +4,11 @@
     "title": "General",
     "items": [
       {
+        "title": "Identifier",
+        "type": "textfield",
+        "key": "identifier"
+      },
+      {
         "title": "Mode",
         "type": "radio",
         "key": "mode",

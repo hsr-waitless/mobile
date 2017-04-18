@@ -36,6 +36,8 @@ import { DetailComponent } from './pages/waiter/detail/detail.component';
 import { OrdersComponent } from './pages/waiter/orders/orders.component';
 import { CallsComponent } from './pages/waiter/calls/calls.component';
 import { TabletHubService } from './providers/tablet-hub.service';
+import { ConfigGuard } from './guards/config.guard';
+import { TabletItemComponent } from './components/tablet-item/tablet-item.component';
 
 @NgModule({
   declarations: [
@@ -56,7 +58,8 @@ import { TabletHubService } from './providers/tablet-hub.service';
     NotificationComponent,
     DetailComponent,
     OrdersComponent,
-    CallsComponent
+    CallsComponent,
+    TabletItemComponent
   ],
   imports: [
     BrowserModule,
@@ -74,6 +77,7 @@ import { TabletHubService } from './providers/tablet-hub.service';
     OrderHubService,
     TabletHubService,
     StartupGuard,
+    ConfigGuard,
     { provide: SignalrWindow, useFactory: signalrWindowFactory },
     { provide: HUB_TOKEN, useFactory: menuHubFactory, deps: [MenuHubService], multi: true },
     { provide: HUB_TOKEN, useFactory: tabletHubFactory, deps: [TabletHubService], multi: true },

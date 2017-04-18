@@ -9,17 +9,13 @@ import { TabletHubService } from './tablet-hub.service';
 export class SettingService {
 
   private _mode$: Observable<TabletMode>;
+  private _identifier$: Observable<string>;
 
-  constructor(private config: ConfigService,
-              private tabletHub: TabletHubService) {
+  constructor(private config: ConfigService) {
     this._mode$ = this.config.get('mode').map(value => {
       return parseInt(value, 0);
     });
-
-    this.tabletHub.onAssignedTablet.subscribe(mode => {
-      console.log('assign');
-      this.setMode(mode);
-    });
+    this._identifier$ = this.config.get('identifier');
   }
 
   public get mode$(): Observable<TabletMode> {
@@ -28,5 +24,13 @@ export class SettingService {
 
   public setMode(value: TabletMode): Promise<void> {
     return this.config.set('mode', value.toString());
+  }
+
+  public get identifier$(): Observable<string> {
+    return this._identifier$;
+  }
+
+  public setIdentifier(value: string): Promise<void> {
+    return this.config.set('identifier', value);
   }
 }

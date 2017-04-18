@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { TableModel } from '../../models/table.model';
 
 @Component({
@@ -11,6 +11,8 @@ export class TableComponent {
   @Input()
   public table: TableModel;
 
+  @Output()
+  public select: EventEmitter<TableModel> = new EventEmitter<TableModel>();
 
 }
 

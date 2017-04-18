@@ -9,6 +9,10 @@ html, body {
   border: 0.1rem solid #4aa05a;
 }
 
+input[type='text']:focus {
+  border-color: #4aa05a;
+}
+
 .button.button-circle,
 button.button-circle {
   display: flex;

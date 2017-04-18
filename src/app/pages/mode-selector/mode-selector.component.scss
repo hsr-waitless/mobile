@@ -1,6 +1,7 @@
 :host {
   display: flex;
   justify-content: center;
+  flex-direction: column;
   height: 100vh;
   align-items: center;
 }
@@ -13,4 +14,8 @@
   background: #4aa05a;
   color: white;
   cursor: pointer;
+}
+
+.modes {
+  display: flex;
 }

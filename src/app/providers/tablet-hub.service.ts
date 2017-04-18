@@ -3,39 +3,41 @@ import { SignalrHub } from '../models/signalr-hub';
 import { RpcExecutor } from '../models/rpc.executor';
 import { Observable } from 'rxjs/Observable';
 import { TabletMode } from '../models/tablet-mode.enum';
-import { ReplaySubject } from 'rxjs/ReplaySubject';
+import { SettingService } from './setting.service';
+import { TabletModel } from '../models/tablet.model';
 
 @Injectable()
 export class TabletHubService extends SignalrHub {
 
-  private doAssignTabletRpc: RpcExecutor<{ isTabletNew: boolean }>;
-  private onAssignedTabletSubject = new ReplaySubject<TabletMode>();
+  private setModeRpc: RpcExecutor<{ isTabletNew: boolean }>;
+  private getTabletsByMode: RpcExecutor<{ tablets: TabletModel[] }>;
 
-
-  constructor(zone: NgZone) {
+  constructor(zone: NgZone, private settings: SettingService) {
     super('tablethub', zone);
   }
 
-  public get onAssignedTablet(): Observable<TabletMode> {
-    return this.onAssignedTabletSubject.asObservable();
-  }
-
   init(): void {
-    this.doAssignTabletRpc = this.rpc('DoAssignTablet');
-    this.on<TabletMode>('onAssignedTablet').subscribe(mode => {
-      this.onAssignedTabletSubject.next(mode);
+    this.setModeRpc = this.rpc('SetMode');
+    this.getTabletsByMode = this.rpc('GetTabletsByMode');
+
+    this.on<TabletMode>('onModeAssigned').subscribe(mode => {
+      this.settings.setMode(mode);
     });
   }
 
-  connected(): void {
-  }
-
-  public doAssignTablet(mode: TabletMode, tabletIdentifier: string): Observable<boolean> {
-    return this.doAssignTabletRpc
+  public setMode(mode: TabletMode, tabletIdentifier: string): Observable<boolean> {
+    return this.setModeRpc
       .run({ mode: mode, tabletIdentifier: tabletIdentifier })
       .map(res => {
         return res.isTabletNew;
       });
   }
 
+  public getTables(mode: TabletMode): Observable<TabletModel[]> {
+    return this.getTabletsByMode
+      .run({ mode: mode })
+      .map(res => {
+        return res.tablets;
+      });
+  }
 }

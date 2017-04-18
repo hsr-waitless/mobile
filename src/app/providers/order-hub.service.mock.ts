@@ -7,4 +7,11 @@ export class OrderHubServiceMock {
     return Observable.of([]);
   }
 
+  getOrders() {
+    return Observable.of([]);
+  }
+
+  getOrder() {
+    return Observable.of({});
+  }
 }
