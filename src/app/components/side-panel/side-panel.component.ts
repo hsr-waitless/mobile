@@ -8,24 +8,28 @@ import { trigger, state, style, transition, animate } from '@angular/animations'
   animations: [
     trigger('panelState', [
       state('closed', style({
-        backgroundColor: '#eee',
-        transform: 'scale(1)'
+        transform: 'translate(400px, 0)'
       })),
       state('open', style({
-        backgroundColor: '#cfd8dc',
-        transform: 'scale(1.1)'
+        transform: 'translate(0, 0)'
       })),
-      transition('inactive => active', animate('100ms ease-in')),
-      transition('active => inactive', animate('100ms ease-out'))
+      transition('open => closed', animate('400ms ease-in')),
+      transition('closed => open', animate('400ms ease-out'))
     ])
   ]
 })
-export class SidePanelComponent implements OnInit {
+export class SidePanelComponent {
 
   private _isVisible: boolean;
 
-  constructor() {
-  }
+  @Input()
+  public title: string;
+
+  @Input()
+  public header: string;
+
+  @Input()
+  public width = 400;
 
   @HostBinding('class.visible')
   public get isVisible() {
@@ -37,14 +41,8 @@ export class SidePanelComponent implements OnInit {
     this.hide();
   }
 
-  @Input()
-  public title: string;
-
   public get panelState() {
     return this.isVisible ? 'open' : 'closed';
-  }
-
-  ngOnInit() {
   }
 
   public show() {

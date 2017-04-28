@@ -3,13 +3,17 @@
     <span class="title">Order #{{(order$ | async)?.number}}</span>
     <span>{{(order$ | async)?.table}}</span>
   </div>
-  <button class="button button-circle" (click)="add()">
+  <button class="button button-circle" (click)="addPosition()">
     <i class="fa fa-2x fa-plus"></i>
   </button>
 </div>
 
-<app-side-panel #panel [title]="'Assign tablet'">
+<app-side-panel #tabletPanel [title]="'Assign tablet'" [header]="'Tablet'">
   <app-tablet-item [tablet]="tablet" *ngFor="let tablet of tablets$ | async"></app-tablet-item>
+</app-side-panel>
+
+<app-side-panel #positionPanel [width]="800" [title]="'Add position'" [header]="'Menu'">
+  <app-item-grid class="item-grid" (itemSelected)="itemSelected($event)"></app-item-grid>
 </app-side-panel>
 
 <div class="positions">
@@ -20,3 +24,8 @@
     No positions
   </div>
 </div>
+
+<div class="footer">
+  <button (click)="addTablet()">Assign Tablet</button>
+</div>
+

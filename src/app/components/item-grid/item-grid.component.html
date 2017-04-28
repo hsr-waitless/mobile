@@ -1,0 +1,10 @@
+<div class="menu-row" *ngFor="let menu of menus">
+  <div class="menu-cell">
+    {{menu.name}}
+  </div>
+  <div class="item-cells">
+    <div class="item-cell" *ngFor="let item of items[menu.id]" (click)="itemSelected.emit(item)">
+      {{item.title}}
+    </div>
+  </div>
+</div>

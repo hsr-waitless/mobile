@@ -38,6 +38,7 @@ import { CallsComponent } from './pages/waiter/calls/calls.component';
 import { TabletHubService } from './providers/tablet-hub.service';
 import { ConfigGuard } from './guards/config.guard';
 import { TabletItemComponent } from './components/tablet-item/tablet-item.component';
+import { ItemGridComponent } from './components/item-grid/item-grid.component';
 
 @NgModule({
   declarations: [
@@ -59,7 +60,8 @@ import { TabletItemComponent } from './components/tablet-item/tablet-item.compon
     DetailComponent,
     OrdersComponent,
     CallsComponent,
-    TabletItemComponent
+    TabletItemComponent,
+    ItemGridComponent
   ],
   imports: [
     BrowserModule,

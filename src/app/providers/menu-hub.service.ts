@@ -16,6 +16,7 @@ export class MenuHubService extends SignalrHub {
   private getMenuRpc: RpcExecutor<MenuResponseModel>;
   private getSubMenuRpc: RpcExecutor<SubMenuResponseModel>;
   private getItemTypeRpc: RpcExecutor<MenuItemResponseModel>;
+  private getAllItemTypeRpc: RpcExecutor<MenuItemResponseModel>;
 
   constructor(zone: NgZone) {
     super('menuHub', zone);
@@ -25,6 +26,7 @@ export class MenuHubService extends SignalrHub {
     this.getMenuRpc = this.rpc('GetMenu');
     this.getSubMenuRpc = this.rpc('GetSubMenu');
     this.getItemTypeRpc = this.rpc('GetItemType');
+    this.getAllItemTypeRpc = this.rpc('GetAllItemType');
   }
 
   public getMenus(): Observable<MenuModel[]> {
@@ -47,7 +49,14 @@ export class MenuHubService extends SignalrHub {
     return this.getItemTypeRpc
       .run({ subMenuId: subMenuId })
       .map(res => {
-        console.log(res);
+        return res.items;
+      });
+  }
+
+  public getAllMenuItems(menuId: number): Observable<MenuItemModel[]> {
+    return this.getAllItemTypeRpc
+      .run({ menuId: menuId })
+      .map(res => {
         return res.items;
       });
   }

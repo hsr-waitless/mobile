@@ -5,7 +5,7 @@
   </button>
 </div>
 
-<app-side-panel #panel [title]="'Create order'">
+<app-side-panel #panel [title]="'Create order'" [header]="'Tables'">
   <app-table (select)="onTableSelected($event)" [table]="table" *ngFor="let table of tables$ | async"></app-table>
 </app-side-panel>
 

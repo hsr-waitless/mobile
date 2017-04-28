@@ -2,10 +2,18 @@
   padding: 20px;
   display: flex;
   justify-content: space-between;
+  flex-shrink: 0;
+}
+
+:host {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 }
 
 .positions {
   padding: 20px;
+  flex-grow: 1;
 }
 
 .title {
@@ -25,4 +33,13 @@
   .button {
     margin-bottom: 0;
   }
+}
+
+.footer {
+  padding: 20px;
+  flex-shrink: 0;
+}
+
+.item-grid {
+  margin-top: 20px;
 }

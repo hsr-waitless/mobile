@@ -11,19 +11,18 @@
 
 .panel {
   display: flex;
-  width: 400px;
   height: 100vh;
   padding: 20px;
   background: white;
   flex-direction: column;
 }
 
-.header {
+.title-header {
   display: flex;
   justify-content: flex-end;
 }
 
-.theader {
+.content-header {
   border-bottom: 1px solid #e1e1e1;
   font-size: 1.2em;
   font-weight: bold;

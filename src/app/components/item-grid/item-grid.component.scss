@@ -1,0 +1,32 @@
+.menu-row {
+  display: flex;
+  width: 100%;
+  border-top: 1px solid #ccc;
+  border-left: 1px solid #ccc;
+}
+
+.item-cells {
+  flex-grow: 1;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.menu-cell {
+  flex-shrink: 0;
+  border-right: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+  padding: 5px;
+  width: 93px;
+  background: #4aa05a;
+  color: white;
+}
+
+.item-cell {
+  border-right: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+  padding: 5px;
+  width: 95px;
+  height: 95px;
+  word-wrap: break-word;
+  cursor: pointer;
+}
