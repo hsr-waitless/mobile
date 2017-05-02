@@ -1,0 +1,71 @@
+:host {
+  display: flex;
+  align-items: center;
+
+  .position {
+    display: flex;
+    width: 100%;
+  }
+
+  .number {
+    width: 40px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+  }
+
+  .amount-picker {
+    display: flex;
+    width: 100px;
+    align-content: center;
+    flex-shrink: 0;
+    border: 1px solid #888888;
+
+    .minus {
+      width: 30px;
+      text-align: center;
+      flex-shrink: 0;
+      border-right: 1px solid #888888;
+      padding: 0 10px;
+    }
+
+    .amount {
+      flex-grow: 1;
+      text-align: center;
+    }
+
+    .plus {
+      width: 30px;
+      text-align: center;
+      flex-shrink: 0;
+      border-left: 1px solid #888888;
+      padding: 0 10px;
+    }
+
+    .minus, .amount, .plus {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+
+  .title {
+    flex-grow: 1;
+  }
+
+  .status {
+    flex-shrink: 0;
+    width: 50px;
+  }
+
+  .position-action {
+    flex-shrink: 0;
+
+    button {
+      background: #4aa05a;
+      color: white;
+      border: 0px;
+      margin-bottom: 0;
+    }
+  }
+}

@@ -1,0 +1,11 @@
+<app-list-item class="position">
+  <div class="number">#{{position.number}}</div>
+  <div class="title">{{position.item?.title}}</div>
+  <div class="status"></div>
+  <div class="amount-picker">
+    <div class="minus" (click)="amountChanged.emit(position.amount - 1)"><i class="fa fa-minus"></i></div>
+    <div class="amount">{{position.amount}}</div>
+    <div class="plus" (click)="amountChanged.emit(position.amount + 1)"><i class="fa fa-plus"></i></div>
+  </div>
+
+</app-list-item>
