@@ -5,7 +5,16 @@
   align-items: center;
 }
 
-.tablet-name {
+.tablet-header {
+  display: flex;
+  flex-direction: column;
   flex-grow: 1;
+}
+
+.tablet-order {
+  font-size: 0.8em;
+}
+
+.tablet-name {
 }
 

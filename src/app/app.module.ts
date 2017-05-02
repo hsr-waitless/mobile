@@ -39,6 +39,7 @@ import { TabletHubService } from './providers/tablet-hub.service';
 import { ConfigGuard } from './guards/config.guard';
 import { TabletItemComponent } from './components/tablet-item/tablet-item.component';
 import { ItemGridComponent } from './components/item-grid/item-grid.component';
+import { PositionItemComponent } from './components/position-item/position-item.component';
 
 @NgModule({
   declarations: [
@@ -61,7 +62,8 @@ import { ItemGridComponent } from './components/item-grid/item-grid.component';
     OrdersComponent,
     CallsComponent,
     TabletItemComponent,
-    ItemGridComponent
+    ItemGridComponent,
+    PositionItemComponent
   ],
   imports: [
     BrowserModule,

@@ -7,9 +7,8 @@ import { SidePanelComponent } from '../../../components/side-panel/side-panel.co
 import { TabletHubService } from '../../../providers/tablet-hub.service';
 import { TabletModel } from '../../../models/tablet.model';
 import { TabletMode } from '../../../models/tablet-mode.enum';
-import { MenuHubService } from '../../../providers/menu-hub.service';
-import { MenuModel } from '../../../models/menu.model';
 import { MenuItemModel } from '../../../models/menu.item.model';
+import { OrderPositionModel } from '../../../models/order-position.model';
 
 @Component({
   selector: 'app-detail',
@@ -24,7 +23,8 @@ export class DetailComponent implements OnInit {
   @ViewChild('positionPanel')
   public positionPanel: SidePanelComponent;
 
-  public order$: Observable<OrderModel>;
+  public orderId: number;
+  public order: OrderModel;
   public tablets$: Observable<TabletModel[]>;
 
   constructor(private route: ActivatedRoute,
@@ -34,7 +34,10 @@ export class DetailComponent implements OnInit {
 
   ngOnInit() {
     this.route.params.subscribe(params => {
-      this.order$ = this.orderHub.getOrder(params[ 'id' ]);
+      this.orderId = parseInt(params[ 'id' ], 0);
+      this.orderHub.getOrder(this.orderId).subscribe(order => {
+        this.order = order;
+      });
     });
   }
 
@@ -48,6 +51,27 @@ export class DetailComponent implements OnInit {
   }
 
   itemSelected(item: MenuItemModel) {
-    console.log(item);
+    this.orderHub.addOrderPos(this.orderId, item.id).subscribe(order => {
+      this.order = order;
+    });
+  }
+
+  amountChanged(position: OrderPositionModel, amount: number) {
+    position.amount = amount;
+    this.orderHub.updateOrderPos(this.orderId, position.id, amount, '').subscribe(order => {
+      this.order = order;
+    });
+  }
+
+  tabletSelected(tablet: TabletModel) {
+    this.orderHub.assignOrder(this.orderId, tablet.identifier).subscribe(res => {
+      console.log('assing', res);
+    });
+  }
+
+  tabletUnselected(tablet: TabletModel) {
+    this.orderHub.unassignOrder(this.orderId, tablet.identifier).subscribe(res => {
+      console.log('unassing', res);
+    });
   }
 }

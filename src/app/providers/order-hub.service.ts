@@ -11,6 +11,8 @@ import { OrderResponseModel } from '../models/order.response.model';
 import { SettingService } from './setting.service';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/mergeMap';
+import { SuccessResponseModel } from '../models/sucess.response.model';
+import { OrderPositionModel } from '../models/order-position.model';
 
 @Injectable()
 export class OrderHubService extends SignalrHub {
@@ -19,6 +21,11 @@ export class OrderHubService extends SignalrHub {
   private createOrderRpc: RpcExecutor<CreateOrderResponseModel>;
   private getOrdersRpc: RpcExecutor<OrdersResponseModel>;
   private getOrderRpc: RpcExecutor<OrderResponseModel>;
+  private addOrderPosRpc: RpcExecutor<OrderResponseModel>;
+  private removeOrderPosRpc: RpcExecutor<OrderResponseModel>;
+  private updateOrderPosRpc: RpcExecutor<OrderResponseModel>;
+  private doAssignOrderRpc: RpcExecutor<SuccessResponseModel>;
+  private doUnassignOrderRpc: RpcExecutor<SuccessResponseModel>;
 
   constructor(zone: NgZone, private settings: SettingService) {
     super('orderhub', zone);
@@ -29,6 +36,11 @@ export class OrderHubService extends SignalrHub {
     this.getTableRpc = this.rpc('GetAllTables');
     this.getOrderRpc = this.rpc('GetOrder');
     this.getOrdersRpc = this.rpc('GetOrdersByWaiter');
+    this.addOrderPosRpc = this.rpc('AddOrderPos');
+    this.removeOrderPosRpc = this.rpc('RemoveOrderPos');
+    this.updateOrderPosRpc = this.rpc('DoUpdateOrderPos');
+    this.doAssignOrderRpc = this.rpc('DoAssignOrder');
+    this.doUnassignOrderRpc = this.rpc('DoUnassignOrder');
   }
 
   public getOrders(): Observable<OrderModel[]> {
@@ -67,5 +79,50 @@ export class OrderHubService extends SignalrHub {
       });
   }
 
+  public addOrderPos(orderId: number, itemTypeId: number): Observable<OrderModel> {
+    return this.addOrderPosRpc
+      .run({
+        orderId: orderId,
+        itemTypeId: itemTypeId
+      })
+      .map(res => res.order);
+  }
 
+  public updateOrderPos(orderId: number, orderPosId: number, amount: number, comment: string): Observable<OrderModel> {
+    return this.updateOrderPosRpc
+      .run({
+        orderId: orderId,
+        orderPosId: orderPosId,
+        amount: amount,
+        comment: comment
+      })
+      .map(res => res.order);
+  }
+
+  public removeOrderPos(orderId: number, orderPosId: number): Observable<OrderModel> {
+    return this.addOrderPosRpc
+      .run({
+        orderId: orderId,
+        positionId: orderPosId
+      })
+      .map(res => res.order);
+  }
+
+  public assignOrder(orderId: number, tabletIdentifier: string): Observable<boolean> {
+    return this.doAssignOrderRpc
+      .run({
+        orderId: orderId,
+        tabletIdentifier: tabletIdentifier
+      })
+      .map(res => res.success);
+  }
+
+  public unassignOrder(orderId: number, tabletIdentifier: string): Observable<boolean> {
+    return this.doUnassignOrderRpc
+      .run({
+        orderId: orderId,
+        tabletIdentifier: tabletIdentifier
+      })
+      .map(res => res.success);
+  }
 }

@@ -1,7 +1,14 @@
 <div class="tablet">
-  <div class="tablet-name">{{tablet?.identifier}}</div>
+  <div class="tablet-header">
+    <div class="tablet-name">{{tablet?.identifier}}</div>
+    <div class="tablet-order" *ngIf="tablet?.orderId">Order #{{tablet?.orderId}}</div>
+    <div class="tablet-order" *ngIf="!tablet?.orderId">No order assigned</div>
+  </div>
+
   <div class="tablet-action">
-    <button class="button button-small"
+    <button class="button button-small" *ngIf="canSelect"
             (click)="select.emit(tablet)">Select</button>
+    <button class="button button-small" *ngIf="canUnselect"
+            (click)="unselect.emit(tablet)">Unselect</button>
   </div>
 </div>

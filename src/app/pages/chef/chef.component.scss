@@ -18,38 +18,3 @@
   }
 }
 
-.position {
-  display: flex;
-  align-items: center;
-
-
-  .position-quantity {
-    width: 40px;
-    flex-shrink: 0;
-  }
-
-  .position-detail {
-    flex-grow: 1;
-    display: flex;
-    flex-direction: column;
-  }
-
-  .position-title {
-
-  }
-
-  .position-description {
-
-  }
-
-  .position-action {
-    flex-shrink: 0;
-
-    button {
-      background: #4aa05a;
-      color: white;
-      border: 0px;
-      margin-bottom: 0;
-    }
-  }
-}

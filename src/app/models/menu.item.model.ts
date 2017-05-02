@@ -1,6 +1,7 @@
 import { ItemCategory } from './item.category.item';
 
 export interface MenuItemModel {
+  id: number;
   title: string;
   description: string;
   image?: string;

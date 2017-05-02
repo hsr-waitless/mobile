@@ -23,36 +23,7 @@ export class ChefComponent implements OnInit {
       { text: 'Erledigt' }
     ];
 
-    this.orders = [
-      {
-        number: 4292,
-        date: new Date(),
-        table: 'Table 4',
-        positions: [
-          {
-            quantity: 2,
-            item: {
-              title: 'Grüner Salat',
-              description: 'Frische Blattsalate'
-            }
-          },
-          {
-            quantity: 1,
-            item: {
-              title: 'Churrasco de Quadril',
-              description: 'Ein geschmackvolles und fettarmes Rumpsteak von mit Pampas–Gras gefütterten Stieren'
-            }
-          },
-          {
-            quantity: 1,
-            item: {
-              title: 'U.S. Bife Ancho',
-              description: 'Schön marmoriertes Rib-Eye-Steak vom Hohrücken'
-            }
-          }
-        ]
-      }
-    ];
+    this.orders = [];
   }
 
   select(action: PageAction) {
