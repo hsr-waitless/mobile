@@ -23,10 +23,10 @@ export class TabletItemComponent {
   public unselect: EventEmitter<TabletModel> = new EventEmitter<TabletModel>();
 
   public get canSelect() {
-    return this.order.number !== this.tablet.orderId;
+    return this.order && this.order.number !== this.tablet.orderId;
   }
 
   public get canUnselect() {
-    return this.order.number === this.tablet.orderId;
+    return this.order && this.order.number === this.tablet.orderId;
   }
 }

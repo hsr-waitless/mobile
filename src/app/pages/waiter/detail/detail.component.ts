@@ -27,9 +27,9 @@ export class DetailComponent implements OnInit {
   public order: OrderModel;
   public tablets$: Observable<TabletModel[]>;
 
-  constructor(private route: ActivatedRoute,
-              private tabletHub: TabletHubService,
-              private orderHub: OrderHubService) {
+  constructor(public route: ActivatedRoute,
+              public tabletHub: TabletHubService,
+              public orderHub: OrderHubService) {
   }
 
   ngOnInit() {

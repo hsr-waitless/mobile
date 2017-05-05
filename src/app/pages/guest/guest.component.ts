@@ -18,7 +18,7 @@ export class GuestComponent implements OnInit {
   public menus$: Observable<MenuModel[]>;
   public subMenus$: Observable<SubMenuModel[]>;
 
-  constructor(private menu: MenuHubService) {
+  constructor(public menu: MenuHubService) {
   }
 
   ngOnInit() {
