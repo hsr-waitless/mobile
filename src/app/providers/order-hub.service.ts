@@ -36,8 +36,8 @@ export class OrderHubService extends SignalrHub {
     this.getTableRpc = this.rpc('GetAllTables');
     this.getOrderRpc = this.rpc('GetOrder');
     this.getOrdersRpc = this.rpc('GetOrdersByWaiter');
-    this.addOrderPosRpc = this.rpc('AddOrderPos');
-    this.removeOrderPosRpc = this.rpc('RemoveOrderPos');
+    this.addOrderPosRpc = this.rpc('CreateOrderPos');
+    this.removeOrderPosRpc = this.rpc('DoDeleteOrderPos');
     this.updateOrderPosRpc = this.rpc('DoUpdateOrderPos');
     this.doAssignOrderRpc = this.rpc('DoAssignOrder');
     this.doUnassignOrderRpc = this.rpc('DoUnassignOrder');

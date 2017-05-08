@@ -17,7 +17,7 @@ export class TabletHubService extends SignalrHub {
   }
 
   init(): void {
-    this.setModeRpc = this.rpc('SetMode');
+    this.setModeRpc = this.rpc('DoAssignTablet');
     this.getTabletsByMode = this.rpc('GetTabletsByMode');
 
     this.on<TabletMode>('onModeAssigned').subscribe(mode => {

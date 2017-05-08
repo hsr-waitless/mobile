@@ -23,8 +23,13 @@ button.button-circle {
   height: 50px;
   padding: 0;
   border-radius: 50px;
+  text-align: center;
 
   box-shadow: 0px 1px 153px -35px rgba(0,0,0,0.69);
+
+  i {
+    width: 100%;
+  }
 }
 
 .button-small {
