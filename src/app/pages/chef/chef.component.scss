@@ -16,5 +16,18 @@
     display: flex;
     justify-content: space-between;
   }
+
+
+  .position {
+    display: flex;
+
+    .position-quantity {
+      margin-right: 8px;
+    }
+
+    .position-detail {
+      flex-grow: 1;
+    }
+  }
 }
 

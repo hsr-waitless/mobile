@@ -12,7 +12,7 @@ import { SettingService } from './setting.service';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/mergeMap';
 import { SuccessResponseModel } from '../models/sucess.response.model';
-import { OrderPositionModel } from '../models/order-position.model';
+import { OrderStatus } from '../models/order.status';
 
 @Injectable()
 export class OrderHubService extends SignalrHub {
@@ -26,6 +26,7 @@ export class OrderHubService extends SignalrHub {
   private updateOrderPosRpc: RpcExecutor<OrderResponseModel>;
   private doAssignOrderRpc: RpcExecutor<SuccessResponseModel>;
   private doUnassignOrderRpc: RpcExecutor<SuccessResponseModel>;
+  private getOrdersByStatusRpc: RpcExecutor<OrdersResponseModel>;
 
   constructor(zone: NgZone, private settings: SettingService) {
     super('orderhub', zone);
@@ -41,6 +42,7 @@ export class OrderHubService extends SignalrHub {
     this.updateOrderPosRpc = this.rpc('DoUpdateOrderPos');
     this.doAssignOrderRpc = this.rpc('DoAssignOrder');
     this.doUnassignOrderRpc = this.rpc('DoUnassignOrder');
+    this.getOrdersByStatusRpc = this.rpc('GetOrdersByStatus');
   }
 
   public getOrders(): Observable<OrderModel[]> {
@@ -51,6 +53,14 @@ export class OrderHubService extends SignalrHub {
           return res.orders;
         });
     });
+  }
+
+  public getOrdersByStatus(status: OrderStatus): Observable<OrderModel[]> {
+    return this.getOrdersByStatusRpc
+      .run({ status: status })
+      .map(res => {
+        return res.orders;
+      });
   }
 
   public getOrder(id: number): Observable<OrderModel> {
