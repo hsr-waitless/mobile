@@ -14,4 +14,8 @@ export class OrderHubServiceMock {
   getOrder() {
     return Observable.of({});
   }
+
+  getOrdersByStatus() {
+    return Observable.of([]);
+  }
 }

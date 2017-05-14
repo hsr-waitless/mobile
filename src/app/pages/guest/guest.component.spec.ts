@@ -9,7 +9,7 @@ import { NavigationItemComponent } from '../../components/navigation-item/naviga
 import { NavigationBarComponent } from '../../components/navigation-bar/navigation-bar.component';
 import { MenuHubService } from '../../providers/menu-hub.service';
 import { MenuHubServiceMock } from '../../providers/menu-hub.service.mock';
-import { Observable } from 'rxjs';
+import { Observable } from 'rxjs/Observable';
 
 describe('GuestComponent', () => {
   let component: GuestComponent;

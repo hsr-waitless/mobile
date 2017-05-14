@@ -23,6 +23,15 @@ export class ChefComponent implements OnInit {
   public orders: OrderModel[];
 
   constructor(private orderHub: OrderHubService) {
+
+  }
+
+  ngOnInit() {
+    this.pages = [
+      { text: 'Offen' },
+      { text: 'Aktiv' },
+      { text: 'Erledigt' }
+    ];
     this.orderHub.getOrdersByStatus(OrderStatus.New).subscribe(orders => {
       this.openOrders = orders;
       this.select(this.selectedPage);
@@ -35,14 +44,6 @@ export class ChefComponent implements OnInit {
       this.doneOrders = orders;
       this.select(this.selectedPage);
     });
-  }
-
-  ngOnInit() {
-    this.pages = [
-      { text: 'Offen' },
-      { text: 'Aktiv' },
-      { text: 'Erledigt' }
-    ];
   }
 
   get viewOpen() {

@@ -10,7 +10,7 @@ import { MenuHubServiceMock } from '../../../providers/menu-hub.service.mock';
 import { MenuHubService } from '../../../providers/menu-hub.service';
 import { OrderHubService } from '../../../providers/order-hub.service';
 import { OrderHubServiceMock } from '../../../providers/order-hub.service.mock';
-import { Observable } from 'rxjs';
+import { Observable } from 'rxjs/Observable';
 
 describe('DetailComponent', () => {
   let component: DetailComponent;

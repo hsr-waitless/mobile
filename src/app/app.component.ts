@@ -3,9 +3,9 @@ import { SettingService } from './providers/setting.service';
 import { TabletMode } from './models/tablet-mode.enum';
 import { Router } from '@angular/router';
 import { SignalrService } from './providers/signalr.service';
-import { MenuHubService } from './providers/menu-hub.service';
 import { TabletHubService } from './providers/tablet-hub.service';
-import { Observable } from 'rxjs';
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/observable/combineLatest';
 
 @Component({
   selector: 'app-root',

@@ -1,6 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { TabletModel } from '../../models/tablet.model';
-import { Observable } from 'rxjs';
 import { OrderModel } from '../../models/order.model';
 
 @Component({
