@@ -1,6 +1,7 @@
 # waitless-mobile
 
 [![Build Status](https://travis-ci.org/hsr-waitless/mobile.svg?branch=master)](https://travis-ci.org/hsr-waitless/mobile)
+[![Build Status](https://ci.evilservices.com/api/badges/hsr-waitless/mobile/status.svg)](https://ci.evilservices.com/hsr-waitless/mobile)
 
 [Live demo](http://waitless.remarkies.codes)
 
