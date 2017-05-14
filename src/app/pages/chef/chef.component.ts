@@ -32,14 +32,17 @@ export class ChefComponent implements OnInit {
       { text: 'Aktiv' },
       { text: 'Erledigt' }
     ];
+
     this.orderHub.getOrdersByStatus(OrderStatus.New).subscribe(orders => {
       this.openOrders = orders;
       this.select(this.selectedPage);
     });
+
     this.orderHub.getOrdersByStatus(OrderStatus.Active).subscribe(orders => {
       this.activeOrders = orders;
       this.select(this.selectedPage);
     });
+
     this.orderHub.getOrdersByStatus(OrderStatus.Done).subscribe(orders => {
       this.doneOrders = orders;
       this.select(this.selectedPage);
