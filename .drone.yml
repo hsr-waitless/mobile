@@ -1,6 +1,13 @@
 pipeline:
+  install:
+    image: node:7.6.0
+    commands:
+      - yarn install
   build:
     image: node:7.6.0
     commands:
-      - npm install
+      - npm run build
+  lint:
+    image: node:7.6.0
+    commands:
       - npm run lint
