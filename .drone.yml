@@ -1,13 +1,8 @@
-cache:
-  mount:
-    - node_modules
-    - .git
-
 pipeline:
   install:
     image: node:7.6.0
     commands:
-      - yarn install
+      - npm install
       - npm rebuild node-sass
   build:
     image: node:7.6.0

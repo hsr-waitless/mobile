@@ -13,6 +13,9 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/mergeMap';
 import { SuccessResponseModel } from '../models/sucess.response.model';
 import { OrderStatus } from '../models/order.status';
+import { OrderPosStatus } from '../models/order.pos.status';
+import { OrderPositionModel } from '../models/order-position.model';
+import { OrderPosResponseModel } from '../models/order.pos.response.model';
 
 @Injectable()
 export class OrderHubService extends SignalrHub {
@@ -27,6 +30,8 @@ export class OrderHubService extends SignalrHub {
   private doAssignOrderRpc: RpcExecutor<SuccessResponseModel>;
   private doUnassignOrderRpc: RpcExecutor<SuccessResponseModel>;
   private getOrdersByStatusRpc: RpcExecutor<OrdersResponseModel>;
+  private doChangeStatusOrderPosRpc: RpcExecutor<OrderPosResponseModel>;
+  private doChangeStatusOrderRpc: RpcExecutor<OrderResponseModel>;
 
   constructor(zone: NgZone, private settings: SettingService) {
     super('orderhub', zone);
@@ -43,6 +48,8 @@ export class OrderHubService extends SignalrHub {
     this.doAssignOrderRpc = this.rpc('DoAssignOrder');
     this.doUnassignOrderRpc = this.rpc('DoUnassignOrder');
     this.getOrdersByStatusRpc = this.rpc('GetOrdersByStatus');
+    this.doChangeStatusOrderPosRpc = this.rpc('DoChangeStatusOrderPos');
+    this.doChangeStatusOrderRpc = this.rpc('DoChangeStatusOrder');
   }
 
   public getOrders(): Observable<OrderModel[]> {
@@ -55,7 +62,7 @@ export class OrderHubService extends SignalrHub {
     });
   }
 
-  public getOrdersByStatus(status: OrderStatus): Observable<OrderModel[]> {
+  public getOrdersByStatus(status: OrderPosStatus): Observable<OrderModel[]> {
     return this.getOrdersByStatusRpc
       .run({ status: status })
       .map(res => {
@@ -125,6 +132,24 @@ export class OrderHubService extends SignalrHub {
         tabletIdentifier: tabletIdentifier
       })
       .map(res => res.success);
+  }
+
+  public doUpdateOrderStatus(orderId: number, status: OrderStatus): Observable<OrderModel> {
+    return this.doChangeStatusOrderRpc
+      .run({
+        number: orderId,
+        orderStatus: status
+      })
+      .map(res => res.order);
+  }
+
+  public doUpdateOrderPosStatus(orderPosId: number, status: OrderPosStatus): Observable<OrderPositionModel> {
+    return this.doChangeStatusOrderPosRpc
+      .run({
+        id: orderPosId,
+        status: status
+      })
+      .map(res => res.orderPos);
   }
 
   public unassignOrder(orderId: number, tabletIdentifier: string): Observable<boolean> {

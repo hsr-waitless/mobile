@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { PageAction } from '../../models/page.action';
 import { OrderModel } from '../../models/order.model';
 import { OrderHubService } from '../../providers/order-hub.service';
-import { Observable } from 'rxjs/Observable';
 import { OrderStatus } from '../../models/order.status';
 import { OrderPositionModel } from '../../models/order-position.model';
 import { OrderPosStatus } from '../../models/order.pos.status';
@@ -33,17 +32,17 @@ export class ChefComponent implements OnInit {
       { text: 'Erledigt' }
     ];
 
-    this.orderHub.getOrdersByStatus(OrderStatus.New).subscribe(orders => {
+    this.orderHub.getOrdersByStatus(OrderPosStatus.New).subscribe(orders => {
       this.openOrders = orders;
       this.select(this.selectedPage);
     });
 
-    this.orderHub.getOrdersByStatus(OrderStatus.Active).subscribe(orders => {
+    this.orderHub.getOrdersByStatus(OrderPosStatus.Active).subscribe(orders => {
       this.activeOrders = orders;
       this.select(this.selectedPage);
     });
 
-    this.orderHub.getOrdersByStatus(OrderStatus.Done).subscribe(orders => {
+    this.orderHub.getOrdersByStatus(OrderPosStatus.Done).subscribe(orders => {
       this.doneOrders = orders;
       this.select(this.selectedPage);
     });
@@ -51,6 +50,14 @@ export class ChefComponent implements OnInit {
 
   get viewOpen() {
     return this.selectedPage && this.selectedPage.text === 'Offen';
+  }
+
+  get viewActive() {
+    return this.selectedPage && this.selectedPage.text === 'Aktiv';
+  }
+
+  get viewDone() {
+    return this.selectedPage && this.selectedPage.text === 'Erledigt';
   }
 
   select(action: PageAction) {
@@ -61,11 +68,11 @@ export class ChefComponent implements OnInit {
       return;
     }
 
-    if (this.selectedPage.text === 'Offen') {
+    if (this.viewOpen) {
       this.orders = this.openOrders;
-    } else if (this.selectedPage.text === 'Aktive') {
+    } else if (this.viewActive) {
       this.orders = this.activeOrders;
-    } else if (this.selectedPage.text === 'Erledigt') {
+    } else if (this.viewDone) {
       this.orders = this.doneOrders;
     }
   }
@@ -74,7 +81,29 @@ export class ChefComponent implements OnInit {
     return position.posStatus === OrderPosStatus.New;
   }
 
-  startPosition(position: OrderPositionModel) {
+  isPositionActive(position: OrderPositionModel) {
+    return position.posStatus === OrderPosStatus.Active;
+  }
 
+  isPositionDone(position: OrderPositionModel) {
+    return position.posStatus === OrderPosStatus.Done;
+  }
+
+  startPosition(order: OrderModel, position: OrderPositionModel, index: number) {
+    this.orderHub.doUpdateOrderPosStatus(position.id, OrderPosStatus.Active).subscribe(pos => {
+      order.positions[index] = pos;
+    });
+  }
+
+  donePosition(order: OrderModel, position: OrderPositionModel, index: number) {
+    this.orderHub.doUpdateOrderPosStatus(position.id, OrderPosStatus.Done).subscribe(pos => {
+      order.positions[index] = pos;
+    });
+  }
+
+  reactivatePosition(order: OrderModel, position: OrderPositionModel, index: number) {
+    this.orderHub.doUpdateOrderPosStatus(position.id, OrderPosStatus.New).subscribe(pos => {
+      order.positions[index] = pos;
+    });
   }
 }

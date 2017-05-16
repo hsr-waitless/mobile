@@ -25,7 +25,7 @@ export class MenuHubService extends SignalrHub {
   init(): void {
     this.getMenuRpc = this.rpc('GetMenu');
     this.getSubMenuRpc = this.rpc('GetSubMenu');
-    this.getItemTypeRpc = this.rpc('GetItemType');
+    this.getItemTypeRpc = this.rpc('GetItemTypes');
     this.getAllItemTypeRpc = this.rpc('GetAllItemType');
   }
 
