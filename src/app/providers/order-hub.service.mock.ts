@@ -3,6 +3,10 @@ import { Observable } from 'rxjs/Observable';
 
 @Injectable()
 export class OrderHubServiceMock {
+  get reload$() {
+    return Observable.of();
+  }
+
   getTables() {
     return Observable.of([]);
   }
