@@ -16,10 +16,11 @@ import { OrderStatus } from '../models/order.status';
 import { OrderPosStatus } from '../models/order.pos.status';
 import { OrderPositionModel } from '../models/order-position.model';
 import { OrderPosResponseModel } from '../models/order.pos.response.model';
+import { Subject } from 'rxjs/Subject';
 
 @Injectable()
 export class OrderHubService extends SignalrHub {
-
+  private reloadSubject: Subject<string> = new Subject<string>();
   private getTableRpc: RpcExecutor<TableResponseModel>;
   private createOrderRpc: RpcExecutor<CreateOrderResponseModel>;
   private getOrdersRpc: RpcExecutor<OrdersResponseModel>;
@@ -50,6 +51,15 @@ export class OrderHubService extends SignalrHub {
     this.getOrdersByStatusRpc = this.rpc('GetOrdersByStatus');
     this.doChangeStatusOrderPosRpc = this.rpc('DoChangeStatusOrderPos');
     this.doChangeStatusOrderRpc = this.rpc('DoChangeStatusOrder');
+
+
+    this.on<any>('DoSendInfoEvent').subscribe(infoEvent => {
+      this.reloadSubject.next(infoEvent.Info);
+    });
+  }
+
+  public get reload$(): Observable<string> {
+    return this.reloadSubject.asObservable();
   }
 
   public getOrders(): Observable<OrderModel[]> {

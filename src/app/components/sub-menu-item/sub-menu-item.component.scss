@@ -1,7 +1,6 @@
 .sub-menu-header {
   padding: 15px 20px 10px 20px;
   font-style: italic;
-  border-top: 1px solid #fae6c8;
 }
 
 .sub-menu-items {
@@ -14,4 +13,8 @@
   app-menu-item {
     flex: 0 0 33.3333%
   }
+}
+
+.sub-menu-items {
+  border-bottom: 1px solid #888888;
 }

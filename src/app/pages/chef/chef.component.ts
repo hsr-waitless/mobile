@@ -16,10 +16,10 @@ export class ChefComponent implements OnInit {
   public selectedPage: PageAction;
   public pages: PageAction[];
 
-  public openOrders: OrderModel[];
-  public activeOrders: OrderModel[];
-  public doneOrders: OrderModel[];
-  public orders: OrderModel[];
+  public openOrders: OrderModel[] = null;
+  public activeOrders: OrderModel[] = null;
+  public doneOrders: OrderModel[] = null;
+  public orders: OrderModel[] = null;
 
   constructor(private orderHub: OrderHubService) {
 
@@ -32,32 +32,49 @@ export class ChefComponent implements OnInit {
       { text: 'Erledigt' }
     ];
 
+    this.orderHub.reload$.subscribe(() => {
+      this.reload(true);
+    });
+
+    this.reload(false);
+  }
+
+  get viewOpen() {
+    return this.selectedPage && this.selectedPage.text.startsWith('Offen');
+  }
+
+  get viewActive() {
+    return this.selectedPage && this.selectedPage.text.startsWith('Aktiv');
+  }
+
+  get viewDone() {
+    return this.selectedPage && this.selectedPage.text.startsWith('Erledigt');
+  }
+
+  reload(force: boolean) {
     this.orderHub.getOrdersByStatus(OrderPosStatus.New).subscribe(orders => {
       this.openOrders = orders;
-      this.select(this.selectedPage);
+      this.pages[0].text = `Offen (${this.openOrders.length})`;
+      if (this.orders == null || force) {
+        this.select(this.selectedPage);
+      }
     });
 
     this.orderHub.getOrdersByStatus(OrderPosStatus.Active).subscribe(orders => {
       this.activeOrders = orders;
-      this.select(this.selectedPage);
+      this.pages[1].text = `Aktiv (${this.activeOrders.length})`;
+      if (this.orders == null || force) {
+        this.select(this.selectedPage);
+      }
     });
 
     this.orderHub.getOrdersByStatus(OrderPosStatus.Done).subscribe(orders => {
       this.doneOrders = orders;
-      this.select(this.selectedPage);
+      this.pages[2].text = `Erledigt (${this.doneOrders.length})`;
+      if (this.orders == null || force) {
+        this.select(this.selectedPage);
+      }
     });
-  }
-
-  get viewOpen() {
-    return this.selectedPage && this.selectedPage.text === 'Offen';
-  }
-
-  get viewActive() {
-    return this.selectedPage && this.selectedPage.text === 'Aktiv';
-  }
-
-  get viewDone() {
-    return this.selectedPage && this.selectedPage.text === 'Erledigt';
   }
 
   select(action: PageAction) {
@@ -91,19 +108,19 @@ export class ChefComponent implements OnInit {
 
   startPosition(order: OrderModel, position: OrderPositionModel, index: number) {
     this.orderHub.doUpdateOrderPosStatus(position.id, OrderPosStatus.Active).subscribe(pos => {
-      order.positions[index] = pos;
+      order.positions[ index ] = pos;
     });
   }
 
   donePosition(order: OrderModel, position: OrderPositionModel, index: number) {
     this.orderHub.doUpdateOrderPosStatus(position.id, OrderPosStatus.Done).subscribe(pos => {
-      order.positions[index] = pos;
+      order.positions[ index ] = pos;
     });
   }
 
   reactivatePosition(order: OrderModel, position: OrderPositionModel, index: number) {
     this.orderHub.doUpdateOrderPosStatus(position.id, OrderPosStatus.New).subscribe(pos => {
-      order.positions[index] = pos;
+      order.positions[ index ] = pos;
     });
   }
 }
