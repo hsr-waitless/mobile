@@ -54,7 +54,7 @@ export class ChefComponent implements OnInit {
   reload(force: boolean) {
     this.orderHub.getOrdersByStatus(OrderPosStatus.New).subscribe(orders => {
       this.openOrders = orders;
-      this.pages[0].text = `Offen (${this.openOrders.length})`;
+      this.pages[0].text = `Offen (${this.openOrders.reduce((prev, curr) => prev + curr.positions.length, 0)})`;
       if (this.orders == null || force) {
         this.select(this.selectedPage);
       }
@@ -62,7 +62,7 @@ export class ChefComponent implements OnInit {
 
     this.orderHub.getOrdersByStatus(OrderPosStatus.Active).subscribe(orders => {
       this.activeOrders = orders;
-      this.pages[1].text = `Aktiv (${this.activeOrders.length})`;
+      this.pages[1].text = `Aktiv (${this.activeOrders.reduce((prev, curr) => prev + curr.positions.length, 0)})`;
       if (this.orders == null || force) {
         this.select(this.selectedPage);
       }
@@ -70,7 +70,7 @@ export class ChefComponent implements OnInit {
 
     this.orderHub.getOrdersByStatus(OrderPosStatus.Done).subscribe(orders => {
       this.doneOrders = orders;
-      this.pages[2].text = `Erledigt (${this.doneOrders.length})`;
+      this.pages[2].text = `Erledigt (${this.doneOrders.reduce((prev, curr) => prev + curr.positions.length, 0)})`;
       if (this.orders == null || force) {
         this.select(this.selectedPage);
       }

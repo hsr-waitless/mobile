@@ -9,10 +9,10 @@
       </div>
 
       <app-list-item class="position" *ngFor="let position of order.positions">
-        <div class="position-quantity">{{position.amount}}x</div>
+        <div class="position-quantity">{{position?.amount}}x</div>
         <div class="position-detail">
-          <div class="position-title">{{position.item.title}}</div>
-          <div class="position-description">{{position.item.description}}</div>
+          <div class="position-title">{{position?.item.title}}</div>
+          <div class="position-description">{{position?.item.description}}</div>
         </div>
         <div class="position-action">
           <button (click)="startPosition(order, position, i)" *ngIf="viewOpen && isPositionOpen(position)">Start</button>
