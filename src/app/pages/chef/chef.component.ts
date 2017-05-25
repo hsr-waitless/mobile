@@ -95,15 +95,15 @@ export class ChefComponent implements OnInit {
   }
 
   isPositionOpen(position: OrderPositionModel) {
-    return position.posStatus === OrderPosStatus.New;
+    return position && position.posStatus === OrderPosStatus.New;
   }
 
   isPositionActive(position: OrderPositionModel) {
-    return position.posStatus === OrderPosStatus.Active;
+    return position && position.posStatus === OrderPosStatus.Active;
   }
 
   isPositionDone(position: OrderPositionModel) {
-    return position.posStatus === OrderPosStatus.Done;
+    return position && position.posStatus === OrderPosStatus.Done;
   }
 
   startPosition(order: OrderModel, position: OrderPositionModel, index: number) {

@@ -35,9 +35,16 @@ export class DetailComponent implements OnInit {
   ngOnInit() {
     this.route.params.subscribe(params => {
       this.orderId = parseInt(params[ 'id' ], 0);
-      this.orderHub.getOrder(this.orderId).subscribe(order => {
-        this.order = order;
+      this.reload();
+      this.orderHub.reload$.subscribe(() => {
+        this.reload();
       });
+    });
+  }
+
+  reload() {
+    this.orderHub.getOrder(this.orderId).subscribe(order => {
+      this.order = order;
     });
   }
 

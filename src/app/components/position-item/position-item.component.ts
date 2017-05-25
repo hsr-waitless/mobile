@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { OrderPositionModel } from '../../models/order-position.model';
+import { OrderPosStatus } from '../../models/order.pos.status';
 
 @Component({
   selector: 'app-position-item',
@@ -14,4 +15,7 @@ export class PositionItemComponent {
   @Output()
   public amountChanged: EventEmitter<number> = new EventEmitter<number>();
 
+  public getStatus(status: OrderPosStatus) {
+    return OrderPosStatus[status];
+  }
 }

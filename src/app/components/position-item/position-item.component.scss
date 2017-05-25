@@ -54,8 +54,10 @@
   }
 
   .status {
+    align-items: center;
+    display: flex;
     flex-shrink: 0;
-    width: 50px;
+    width: 80px;
   }
 
   .position-action {
