@@ -28,7 +28,9 @@ export class GuestComponent implements OnInit {
       this.actions = menus
         .sort((a, b) => a.order - b.order)
         .map(menu => ({ text: menu.name, args: menu }));
-      this.selectAction(this.actions[0]);
+      if(this.actions.length > 0) {
+        this.selectAction(this.actions[0]);
+      }
     });
   }
 
